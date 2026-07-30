@@ -25,17 +25,15 @@ By orchestrating specialized AI agents (Gemini and Claude) through a fully autom
 - 🛡️ **Hardened Docker Sandbox:** All generated code is executed, tested, and verified inside isolated Docker containers to ensure safety and runtime correctness.
 - 🔁 **Iterative Debug Loop:** The Debugger agent autonomously patches import errors, missing endpoints, and runtime crashes across multiple verification cycles.
 - 🚀 **One-Click Deployment:** Automatically provisions and deploys the finished, fully-tested full-stack application to **Vercel** via API integration.
-
+---
 ---
 ## 📸 Screenshots
 
-| 
-Clarification Chat 
-| 
-Live Generation Progress 
-|
+| Clarification Chat | Live Generation Progress |
 |:---:|:---:|
 | <img width="800" alt="Clarification Chat" src="https://github.com/user-attachments/assets/6e14b3f0-743a-48f4-86a7-81b6fcff4221" /> | <img width="800" alt="Live Generation Progress" src="https://github.com/user-attachments/assets/1bd43d54-cfb7-431a-8166-31b5b0aa2db2" /> |
+---
+
 ---
 ## 🏗️ Multi-Agent Architecture
 
