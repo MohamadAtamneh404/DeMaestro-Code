@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+
+:root {
+  --surface-page: 248 250 252;    /* slate-50 */
+  --surface-panel: 255 255 255;   /* white */
+  --surface-border: 226 232 240;  /* slate-200 */
+  --text-default: 15 23 42;       /* slate-900 */
+  --text-muted: 71 85 105;        /* slate-600 */
+  --accent: 37 99 235;            /* blue-600 — overridable by design brief */
+  --accent-fg: 255 255 255;
+}
