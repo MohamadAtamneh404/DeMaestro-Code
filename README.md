@@ -12,7 +12,7 @@
 
 > **DeMaestro** is an Agentic AI platform that generates complete, runnable full-stack web applications directly from natural language requirements or PDF documents. 
 
-By orchestrating specialized AI agents (Gemini and Claude) through a fully automated and containerized pipeline, DeMaestro handles everything from requirements extraction and interactive clarification to code synthesis, iterative debugging, and one-click cloud deployment.
+By orchestrating specialized AI agents (Gemini and Claude) through a fully automated pipeline, DeMaestro handles everything from requirements extraction and interactive clarification to code synthesis, iterative debugging, and one-click cloud deployment.
 
 ---
 
@@ -21,19 +21,12 @@ By orchestrating specialized AI agents (Gemini and Claude) through a fully autom
 - 📄 **Document Ingestion:** Upload PDF requirement documents or paste raw text. PyMuPDF and Gemini extract, parse, and structure the data.
 - 💬 **Interactive Clarification Chat:** Gemini acts as a Requirements Analyst, asking targeted questions to fill logic gaps before locking in the blueprint.
 - ⚙️ **Automated Agentic Pipeline:** Claude acts as the Code Engineer, running a multi-stage state machine: `Architect → Generator → Tester → Debugger → Verifier → Deployer`.
-- 🛡️ **Hardened Docker Sandbox:** All generated code is executed, tested, and verified inside isolated Docker containers to ensure safety and runtime correctness.
+- 🛡️ **Isolated Execution:** All generated code is executed, tested, and verified inside isolated Python `subprocess` environments to evaluate runtime correctness.
 - 🔁 **Iterative Debug Loop:** The Debugger agent autonomously patches import errors, missing endpoints, and runtime crashes across multiple verification cycles.
 - 🚀 **One-Click Deployment:** Automatically provisions and deploys the finished, fully-tested full-stack application to **Vercel** via API integration.
----
----
-## 📸 Screenshots
-
-| Clarification Chat | Live Generation Progress |
-|:---:|:---:|
-| <img width="800" alt="Clarification Chat" src="https://github.com/user-attachments/assets/6e14b3f0-743a-48f4-86a7-81b6fcff4221" /> | <img width="800" alt="Live Generation Progress" src="https://github.com/user-attachments/assets/1bd43d54-cfb7-431a-8166-31b5b0aa2db2" /> |
----
 
 ---
+
 ## 🏗️ Multi-Agent Architecture
 
 The backend orchestrates a sophisticated pipeline where different LLMs handle specialized roles.
@@ -54,7 +47,7 @@ graph TD
     
     subgraph "Phase 2: Code Synthesis (Claude)"
     E[Architect Agent] --> F[Code Generator]
-    F --> G[Docker Sandbox execution]
+    F --> G[Subprocess Execution]
     G --> H{Pass Tests?}
     H -- No --> I[Debugger Agent]
     I --> F
@@ -64,11 +57,17 @@ graph TD
     J --> Vercel[(Vercel Cloud)]
 ```
 
+## 📸 Screenshots
+
+| Clarification Chat | Live Generation Progress |
+|:---:|:---:|
+| <img width="800" alt="Clarification Chat" src="https://github.com/user-attachments/assets/6e14b3f0-743a-48f4-86a7-81b6fcff4221" /> | <img width="800" alt="Live Generation Progress" src="https://github.com/user-attachments/assets/1bd43d54-cfb7-431a-8166-31b5b0aa2db2" /> |
+
 ---
 
 ## 🚀 Quick Start
 
-Ensure you have **Docker**, **Node.js**, and **Python 3.11+** installed.
+Ensure you have **Node.js** and **Python 3.11+** installed.
 
 ### 1. Configure Environment
 ```bash
@@ -115,12 +114,12 @@ demaestro/
 │   ├── app/routes/          # REST endpoints (auth, requirements, pipeline)
 │   ├── app/services/        # Cloud Storage, Vercel Deployer, PyMuPDF
 │   ├── app/pipeline/        # Code generation state machine & checklist logic
-│   ├── app/sandbox/         # Docker container lifecycle management
+│   ├── app/sandbox/         # Subprocess execution and lifecycle management
 │   └── app/ai/              # Agent prompts and orchestration logic
 │       ├── gemini/agents/   # Analyst, Clarification, Validator
 │       └── claude/agents/   # Architect, Generator, Tester, Debugger
 │
-└── docker-compose.yml       # Local database & sandbox convenience
+└── .env.example             # Local configuration templates
 ```
 
 ---
