@@ -12,7 +12,7 @@
 
 > **DeMaestro** is an Agentic AI platform that generates complete, runnable full-stack web applications directly from natural language requirements or PDF documents. 
 
-By orchestrating specialized AI agents (Gemini and Claude) through a fully automated pipeline, DeMaestro handles everything from requirements extraction and interactive clarification to code synthesis, iterative debugging, and one-click cloud deployment.
+DeMaestro coordinates specialized Gemini and Claude agents across requirements extraction, interactive clarification, code generation, testing, iterative debugging, and Vercel deployment. Users review and approve requirements before code generation.
 
 ---
 
@@ -21,9 +21,9 @@ By orchestrating specialized AI agents (Gemini and Claude) through a fully autom
 - 📄 **Document Ingestion:** Upload PDF requirement documents or paste raw text. PyMuPDF and Gemini extract, parse, and structure the data.
 - 💬 **Interactive Clarification Chat:** Gemini acts as a Requirements Analyst, asking targeted questions to fill logic gaps before locking in the blueprint.
 - ⚙️ **Automated Agentic Pipeline:** Claude acts as the Code Engineer, running a multi-stage state machine: `Architect → Generator → Tester → Debugger → Verifier → Deployer`.
-- 🛡️ **Isolated Execution:** All generated code is executed, tested, and verified inside isolated Python `subprocess` environments to evaluate runtime correctness.
+- 🧪 **Automated Execution & Testing:** Generated code is executed and tested through subprocesses, with iterative debugging when checks fail.
 - 🔁 **Iterative Debug Loop:** The Debugger agent autonomously patches import errors, missing endpoints, and runtime crashes across multiple verification cycles.
-- 🚀 **One-Click Deployment:** Automatically provisions and deploys the finished, fully-tested full-stack application to **Vercel** via API integration.
+- 🚀 **One-Click Deployment:** Supports deployment of generated applications to **Vercel** via API integration.
 
 ---
 
@@ -110,7 +110,7 @@ demaestro/
 │   ├── src/components/      # Reusable UI (ActiveGenerationBanner, etc.)
 │   └── src/pages/           # Routing (ProjectChat, ProjectGeneration, etc.)
 │
-├── backend/                 # FastAPI, Firebase Admin, Docker SDK
+├── backend/                 # FastAPI, Firebase Admin
 │   ├── app/routes/          # REST endpoints (auth, requirements, pipeline)
 │   ├── app/services/        # Cloud Storage, Vercel Deployer, PyMuPDF
 │   ├── app/pipeline/        # Code generation state machine & checklist logic
@@ -138,7 +138,7 @@ demaestro/
 
 ## 🧪 Testing
 
-The backend is hardened with over 50+ test files covering pipeline logic, agent interactions, and sandbox execution.
+The backend includes automated tests covering pipeline logic, agent interactions, and generated-code execution.
 
 ```bash
 cd backend
